@@ -6,7 +6,7 @@
 /*   By: lvargas- <lvargas-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:12:25 by lvargas-          #+#    #+#             */
-/*   Updated: 2026/01/23 18:04:09 by lvargas-         ###   ########.fr       */
+/*   Updated: 2026/01/26 18:03:12 by lvargas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,10 @@ void display_contact(Phonebook pb, int total)
     while (1)
     {
         std::cout << "INSERT INDEX:" << std::endl;
-        std::getline(std::cin, input);
+        if (!std::getline(std::cin, input))
+            return ;
         std::istringstream iss(input);
-        if (!(iss >> index) || (iss >> extra) || index >= total)
+        if (!(iss >> index) || (iss >> extra) || index >= total || index < 0)
         {
             std::cout << "INVALID INDEX. TRY AGAIN." << extra << std::endl;
             continue ;
@@ -110,10 +111,12 @@ void add_contact(Phonebook &pb, int next_index)
     for (int n = 0; n < 5; n++)
     {
         std::cout << questions[n] << std::endl;
-        std::getline(std::cin, input[n]);
+        if (!std::getline(std::cin, input[n]))
+            return ;
         if (input[n].empty())
         {
             std::cout << "Field cannot be empty." << std::endl;
+            n--;
             continue;
         }
     }
@@ -139,7 +142,8 @@ int main(void)
     while (true)
     {
         std::cout << "ADD, SEARCH or EXIT" << std::endl;
-        std::getline(std::cin, input);
+        if (!std::getline(std::cin, input))
+            break ;
         option = parse_input(input);
         if (option == 2)
         {
@@ -154,7 +158,8 @@ int main(void)
         else if (option == 3)
         {
             display_phonebook(pb, total);
-            display_contact(pb, total);
+            if (total != 0)
+                display_contact(pb, total);
         }
         else if (option == 4)
             break;
