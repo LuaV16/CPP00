@@ -6,7 +6,7 @@
 /*   By: lvargas- <lvargas-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:12:25 by lvargas-          #+#    #+#             */
-/*   Updated: 2026/01/26 18:03:12 by lvargas-         ###   ########.fr       */
+/*   Updated: 2026/01/26 18:04:47 by lvargas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void display_contact(Phonebook pb, int total)
             return ;
         }
     }
-    
 }
 
 void add_contact(Phonebook &pb, int next_index)
